@@ -2,10 +2,6 @@ variable "name" {
   description = "The name of the ELB"
 }
 
-variable "region" {
-  description = "AWS region"
-}
-
 variable "security_groups" {
   description = "A list of security group IDs to assign to the ELB"
   type        = "list"
@@ -45,7 +41,6 @@ variable "tags" {
   default     = {}
 }
 
-
 variable "listener" {
   description = "A list of listener blocks"
   type        = "list"
@@ -63,12 +58,10 @@ variable "health_check" {
 }
 
 variable "number_of_instances" {
-  description = "Number of instances to attach to ELB"
-  default     = 0
+  description = "Number of instances ID to place in the ELB pool"
 }
 
 variable "instances" {
   description = "List of instances ID to place in the ELB pool"
   type        = "list"
-  default     = []
 }

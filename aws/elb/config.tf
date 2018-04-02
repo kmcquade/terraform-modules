@@ -15,3 +15,10 @@ resource "aws_elb" "this" {
 
   tags = "${merge(var.tags, map("Name", format("%s", var.name)))}"
 }
+
+resource "aws_elb_attachment" "this" {
+  count = "${var.number_of_instances}"
+
+  elb      = "${aws_elb.this.id}"
+  instance = "${element(var.instances, count.index)}"
+}
