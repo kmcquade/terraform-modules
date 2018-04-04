@@ -37,7 +37,28 @@ variable "subnets" {
   type        = "list"
 }
 
-variable "load_balancer_scheme" {
-  description = "Boolean determining if the load balancer is internal or externally facing."
+variable "load_balancer_is_internal" {
+  description = "Load balancer scheme. Boolean determining if the load balancer is internal or externally facing."
   default     = false
+}
+
+ variable "listener_ssl_policy_default" {
+  description = "The security policy if using HTTPS externally on the load balancer."
+  default     = "ELBSecurityPolicy-2016-08"
+}
+  
+variable "security_groups" {
+  description = "The security groups to attach to the load balancer."
+  type        = "list"
+}
+  
+ variable "target_groups" {
+  description = "A list of maps containing key/value pairs that define the target groups to be created. Order of these maps is important and the index of these are to be referenced in listener definitions. Required key/values: name, backend_protocol, backend_port. Optional key/values are in the target_groups_defaults variable."
+  type        = "list"
+  default     = []
+}
+
+variable "target_groups_count" {
+  description = "A manually provided count/length of the target_groups list of maps since the list cannot be computed."
+  default     = 0
 }
